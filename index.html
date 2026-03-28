@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cengiz Darian Hanci - App Developer</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0f;
+      color: #e4e4e7;
+      min-height: 100vh;
+    }
+
+    .gradient-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 400px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(99,102,241,0.15) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      font-weight: 700;
+      color: white;
+      margin: 0 auto 24px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #a1a1aa;
+      line-height: 1.6;
+    }
+
+    .location {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      font-size: 14px;
+      color: #71717a;
+    }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .section {
+      margin-bottom: 48px;
+    }
+
+    .apps-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .app-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s;
+    }
+
+    .app-card:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(99,102,241,0.3);
+      transform: translateY(-2px);
+    }
+
+    .app-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .app-info {
+      flex: 1;
+    }
+
+    .app-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .app-desc {
+      font-size: 13px;
+      color: #a1a1aa;
+      line-height: 1.4;
+    }
+
+    .app-badge {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(99,102,241,0.15);
+      color: #818cf8;
+      white-space: nowrap;
+    }
+
+    .boxtime .app-icon { background: linear-gradient(135deg, #ef4444, #dc2626); }
+    .lunair .app-icon { background: linear-gradient(135deg, #3b82f6, #06b6d4); }
+    .sola .app-icon { background: linear-gradient(135deg, #f59e0b, #f97316); }
+    .postcore .app-icon { background: linear-gradient(135deg, #6366f1, #a855f7); }
+
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .contact-list li {
+      font-size: 14px;
+      color: #a1a1aa;
+    }
+
+    .contact-list a {
+      color: #818cf8;
+      text-decoration: none;
+    }
+
+    .contact-list a:hover {
+      text-decoration: underline;
+    }
+
+    .legal {
+      margin-top: 64px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .legal-content {
+      font-size: 13px;
+      color: #71717a;
+      line-height: 1.8;
+    }
+
+    .legal-content h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #a1a1aa;
+      margin-top: 20px;
+      margin-bottom: 8px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 48px;
+      font-size: 13px;
+      color: #52525b;
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 48px 16px; }
+      h1 { font-size: 24px; }
+      .app-card { padding: 16px; }
+      .app-badge { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="gradient-bg"></div>
+  <div class="container">
+
+    <div class="header">
+      <div class="avatar">DH</div>
+      <h1>Cengiz Darian Hanci</h1>
+      <p class="subtitle">Independent App Developer</p>
+      <p class="location">Bremen, Deutschland</p>
+    </div>
+
+    <div class="section">
+      <h2>Apps</h2>
+      <div class="apps-grid">
+
+        <a href="https://apps.apple.com/app/id6759327767" target="_blank" rel="noopener" class="app-card boxtime">
+          <div class="app-icon">&#129354;</div>
+          <div class="app-info">
+            <div class="app-name">BoxTime</div>
+            <div class="app-desc">Boxing Timer &mdash; Customizable round timer for boxing, MMA, and combat sports training.</div>
+          </div>
+          <span class="app-badge">App Store</span>
+        </a>
+
+        <a href="https://apps.apple.com/app/6759969887" target="_blank" rel="noopener" class="app-card lunair">
+          <div class="app-icon">&#128172;</div>
+          <div class="app-info">
+            <div class="app-name">Lunair</div>
+            <div class="app-desc">Breathing Exercises &mdash; Guided breathing techniques for relaxation, focus, and mindfulness.</div>
+          </div>
+          <span class="app-badge">App Store</span>
+        </a>
+
+        <a href="https://apps.apple.com/app/id6760429565" target="_blank" rel="noopener" class="app-card sola">
+          <div class="app-icon">&#128221;</div>
+          <div class="app-info">
+            <div class="app-name">Sola</div>
+            <div class="app-desc">Private Journal &mdash; A secure, personal journal for daily reflections and thoughts.</div>
+          </div>
+          <span class="app-badge">App Store</span>
+        </a>
+
+        <a href="https://postcore-x.vercel.app" target="_blank" rel="noopener" class="app-card postcore">
+          <div class="app-icon">P</div>
+          <div class="app-info">
+            <div class="app-name">PostCore</div>
+            <div class="app-desc">Social Media Management &mdash; Schedule and publish content across multiple platforms from one dashboard.</div>
+          </div>
+          <span class="app-badge">Web App</span>
+        </a>
+
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Contact</h2>
+      <ul class="contact-list">
+        <li>E-Mail: <a href="mailto:darian.hanci@gmail.com">darian.hanci@gmail.com</a></li>
+        <li>GitHub: <a href="https://github.com/darian98" target="_blank" rel="noopener">github.com/darian98</a></li>
+      </ul>
+    </div>
+
+    <div class="legal">
+      <div class="legal-content">
+        <h3>Impressum</h3>
+        <p>
+          Cengiz Darian Hanci<br>
+          Arsterdamm 127<br>
+          28279 Bremen<br>
+          Deutschland<br><br>
+          E-Mail: darian.hanci@gmail.com
+        </p>
+
+        <h3>Datenschutz</h3>
+        <p>
+          Diese Website erhebt keine personenbezogenen Daten, verwendet keine Cookies und nutzt keine Tracking-Dienste.
+          F&uuml;r die Datenschutzerkl&auml;rungen der einzelnen Apps besuchen Sie bitte die jeweilige App-Seite im App Store
+          oder die Web-App direkt.
+        </p>
+        <p>
+          Datenschutzerkl&auml;rung PostCore: <a href="https://postcore-x.vercel.app/datenschutz">postcore-x.vercel.app/datenschutz</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="footer">
+      &copy; 2026 Cengiz Darian Hanci. Alle Rechte vorbehalten.
+    </div>
+
+  </div>
+</body>
+</html>
