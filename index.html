@@ -10,29 +10,109 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://darian98.github.io">
   <style>
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('fonts/inter-latin.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url('fonts/inter-latin-600.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url('fonts/inter-latin-700.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: #08080c;
       color: #e4e4e7;
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
     }
 
+    /* ---- Ambient Gradients ---- */
     .gradient-bg {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      height: 600px;
-      background: radial-gradient(ellipse at 50% 0%, rgba(99,102,241,0.12) 0%, transparent 70%);
+      bottom: 0;
       pointer-events: none;
       z-index: 0;
+      overflow: hidden;
+    }
+
+    .gradient-orb-1 {
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1000px;
+      height: 700px;
+      background: radial-gradient(ellipse at center, rgba(99,102,241,0.18) 0%, rgba(139,92,246,0.08) 40%, transparent 70%);
+      animation: pulse-orb 8s ease-in-out infinite alternate;
+    }
+
+    .gradient-orb-2 {
+      position: absolute;
+      bottom: -300px;
+      right: -200px;
+      width: 900px;
+      height: 900px;
+      background: radial-gradient(ellipse at center, rgba(34,211,238,0.08) 0%, rgba(59,130,246,0.04) 40%, transparent 70%);
+      animation: pulse-orb 10s ease-in-out infinite alternate-reverse;
+    }
+
+    .gradient-orb-3 {
+      position: absolute;
+      top: 40%;
+      left: -300px;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(ellipse at center, rgba(168,85,247,0.06) 0%, transparent 70%);
+      animation: pulse-orb 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse-orb {
+      0% { transform: translateX(-50%) scale(1); opacity: 1; }
+      100% { transform: translateX(-50%) scale(1.15); opacity: 0.7; }
+    }
+
+    /* Cursor-following gradient */
+    .cursor-glow {
+      position: fixed;
+      width: 800px;
+      height: 800px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, rgba(139,92,246,0.05) 40%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.4s;
+      opacity: 0;
+    }
+
+    .cursor-glow.active {
+      opacity: 1;
     }
 
     .container {
-      max-width: 800px;
+      max-width: 880px;
       margin: 0 auto;
       padding: 80px 24px;
       position: relative;
@@ -42,36 +122,48 @@
     /* ---- Header ---- */
     .header {
       text-align: center;
-      margin-bottom: 80px;
+      margin-bottom: 96px;
+      padding-top: 40px;
     }
 
     .avatar {
-      width: 96px;
-      height: 96px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #6366f1, #a855f7);
+      background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 38px;
       font-weight: 700;
       color: white;
-      margin: 0 auto 24px;
+      margin: 0 auto 32px;
+      box-shadow: 0 0 50px rgba(99,102,241,0.35), 0 0 100px rgba(139,92,246,0.15);
+      animation: avatar-glow 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes avatar-glow {
+      0% { box-shadow: 0 0 50px rgba(99,102,241,0.35), 0 0 100px rgba(139,92,246,0.15); }
+      100% { box-shadow: 0 0 60px rgba(139,92,246,0.4), 0 0 120px rgba(236,72,153,0.12); }
     }
 
     h1 {
-      font-size: 32px;
+      font-size: 56px;
       font-weight: 700;
-      margin-bottom: 8px;
-      color: #fff;
-      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      letter-spacing: -0.035em;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #ffffff 0%, #c7d2fe 50%, #a5b4fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .subtitle {
-      font-size: 17px;
+      font-size: 19px;
       color: #a1a1aa;
-      line-height: 1.6;
-      max-width: 460px;
+      line-height: 1.7;
+      max-width: 500px;
       margin: 0 auto;
     }
 
@@ -79,102 +171,215 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      margin-top: 16px;
+      margin-top: 24px;
       font-size: 14px;
       color: #71717a;
+      padding: 6px 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
     }
 
-    /* ---- Skills ---- */
-    .skills-section {
-      margin-top: 28px;
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 8px rgba(34,197,94,0.5);
+      animation: status-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes status-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* ---- Tech Stack Grid ---- */
+    .tech-section {
+      margin-bottom: 96px;
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .tech-card {
       display: flex;
-      flex-direction: column;
-      gap: 16px;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: default;
+      position: relative;
+      overflow: hidden;
     }
 
-    .skill-row {
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
+    .tech-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+      border-radius: 12px;
     }
 
-    .skill-row-label {
-      font-size: 11px;
-      font-weight: 500;
-      color: #52525b;
-      min-width: 90px;
-      text-align: right;
+    .tech-card:hover::before {
+      opacity: 1;
+    }
+
+    .tech-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255,255,255,0.15);
+    }
+
+    .tech-icon {
+      width: 22px;
+      height: 22px;
       flex-shrink: 0;
-      padding-top: 2px;
-    }
-
-    .skill-tags {
       display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
     }
 
-    .skill-tag {
-      font-size: 12px;
-      padding: 5px 12px;
-      border-radius: 8px;
-      letter-spacing: 0.01em;
+    .tech-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .tech-label {
+      font-size: 13px;
       font-weight: 500;
+      color: #b4b4bc;
+      white-space: nowrap;
+      position: relative;
+      z-index: 1;
     }
 
-    /* Color-coded categories */
-    .tag-lang { background: rgba(99,102,241,0.12); color: #a5b4fc; }
-    .tag-ios { background: rgba(249,115,22,0.12); color: #fdba74; }
-    .tag-web { background: rgba(34,211,238,0.12); color: #67e8f9; }
-    .tag-db { background: rgba(168,85,247,0.12); color: #d8b4fe; }
-    .tag-cloud { background: rgba(250,204,21,0.12); color: #fde68a; }
-    .tag-other { background: rgba(74,222,128,0.12); color: #86efac; }
+    .tech-card:hover .tech-label {
+      color: #fff;
+    }
+
+    /* Category colors - always visible on icons */
+    .tech-card[data-cat="lang"] .tech-icon { color: #818cf8; }
+    .tech-card[data-cat="ios"] .tech-icon { color: #fb923c; }
+    .tech-card[data-cat="web"] .tech-icon { color: #67e8f9; }
+    .tech-card[data-cat="db"] .tech-icon { color: #c084fc; }
+    .tech-card[data-cat="cloud"] .tech-icon { color: #fde68a; }
+    .tech-card[data-cat="tool"] .tech-icon { color: #86efac; }
+
+    /* Category hover backgrounds & glows */
+    .tech-card[data-cat="lang"]::before { background: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(99,102,241,0.03)); }
+    .tech-card[data-cat="lang"]:hover { box-shadow: 0 8px 30px rgba(99,102,241,0.15); border-color: rgba(99,102,241,0.3); }
+
+    .tech-card[data-cat="ios"]::before { background: linear-gradient(135deg, rgba(249,115,22,0.12), rgba(249,115,22,0.03)); }
+    .tech-card[data-cat="ios"]:hover { box-shadow: 0 8px 30px rgba(249,115,22,0.15); border-color: rgba(249,115,22,0.3); }
+
+    .tech-card[data-cat="web"]::before { background: linear-gradient(135deg, rgba(34,211,238,0.12), rgba(34,211,238,0.03)); }
+    .tech-card[data-cat="web"]:hover { box-shadow: 0 8px 30px rgba(34,211,238,0.15); border-color: rgba(34,211,238,0.3); }
+
+    .tech-card[data-cat="db"]::before { background: linear-gradient(135deg, rgba(168,85,247,0.12), rgba(168,85,247,0.03)); }
+    .tech-card[data-cat="db"]:hover { box-shadow: 0 8px 30px rgba(168,85,247,0.15); border-color: rgba(168,85,247,0.3); }
+
+    .tech-card[data-cat="cloud"]::before { background: linear-gradient(135deg, rgba(250,204,21,0.10), rgba(250,204,21,0.03)); }
+    .tech-card[data-cat="cloud"]:hover { box-shadow: 0 8px 30px rgba(250,204,21,0.12); border-color: rgba(250,204,21,0.3); }
+
+    .tech-card[data-cat="tool"]::before { background: linear-gradient(135deg, rgba(74,222,128,0.12), rgba(74,222,128,0.03)); }
+    .tech-card[data-cat="tool"]:hover { box-shadow: 0 8px 30px rgba(74,222,128,0.15); border-color: rgba(74,222,128,0.3); }
 
     /* ---- Section ---- */
     h2 {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 24px;
-      color: #71717a;
+      letter-spacing: 0.12em;
+      margin-bottom: 28px;
+      color: #818cf8;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
-    .section { margin-bottom: 56px; }
+    h2::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, rgba(129,140,248,0.2), transparent);
+    }
+
+    .section { margin-bottom: 96px; }
 
     /* ---- App Blocks ---- */
     .app-showcase {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 20px;
     }
 
     .app-block {
-      background: rgba(255,255,255,0.025);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 20px;
       overflow: hidden;
-      transition: border-color 0.3s, background 0.3s;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .app-block::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      opacity: 0;
+      transition: opacity 0.4s;
+      pointer-events: none;
+      z-index: 0;
     }
 
     .app-block:hover {
-      border-color: rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.035);
+      border-color: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.045);
+      box-shadow: 0 12px 50px rgba(0,0,0,0.3);
+      transform: translateY(-2px);
     }
+
+    .app-block:hover::before {
+      opacity: 1;
+    }
+
+    /* Per-app colored glow on hover */
+    .app-block:nth-child(1)::before { background: linear-gradient(135deg, rgba(249,115,22,0.06), transparent 60%); }
+    .app-block:nth-child(1):hover { border-color: rgba(249,115,22,0.2); box-shadow: 0 12px 50px rgba(249,115,22,0.08); }
+    .app-block:nth-child(2)::before { background: linear-gradient(135deg, rgba(99,102,241,0.06), transparent 60%); }
+    .app-block:nth-child(2):hover { border-color: rgba(99,102,241,0.2); box-shadow: 0 12px 50px rgba(99,102,241,0.08); }
+    .app-block:nth-child(3)::before { background: linear-gradient(135deg, rgba(234,179,8,0.06), transparent 60%); }
+    .app-block:nth-child(3):hover { border-color: rgba(234,179,8,0.2); box-shadow: 0 12px 50px rgba(234,179,8,0.08); }
 
     .app-header {
       display: flex;
       align-items: center;
       gap: 14px;
-      padding: 20px;
+      padding: 22px 22px 12px;
+      position: relative;
+      z-index: 1;
     }
 
     .app-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 13px;
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
       flex-shrink: 0;
       overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
     }
 
     .app-icon img {
@@ -186,45 +391,78 @@
     .app-meta { flex: 1; min-width: 0; }
 
     .app-name {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 600;
       color: #fff;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
+      letter-spacing: -0.01em;
     }
 
     .app-desc {
-      font-size: 13px;
+      font-size: 14px;
       color: #71717a;
-      line-height: 1.4;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      line-height: 1.5;
+    }
+
+    .app-tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 0 22px 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .app-tech-tag {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: #71717a;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: all 0.2s;
+    }
+
+    .app-block:hover .app-tech-tag {
+      background: rgba(255,255,255,0.08);
+      color: #a1a1aa;
     }
 
     .app-badge {
-      font-size: 11px;
-      font-weight: 500;
-      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 18px;
       border-radius: 20px;
-      background: rgba(99,102,241,0.12);
-      color: #818cf8;
+      background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(139,92,246,0.15));
+      border: 1px solid rgba(99,102,241,0.25);
+      color: #a5b4fc;
       white-space: nowrap;
       text-decoration: none;
-      transition: background 0.2s;
+      transition: all 0.3s;
       flex-shrink: 0;
+      position: relative;
+      z-index: 1;
     }
 
     .app-badge:hover {
-      background: rgba(99,102,241,0.25);
+      background: linear-gradient(135deg, rgba(99,102,241,0.35), rgba(139,92,246,0.25));
+      box-shadow: 0 0 25px rgba(99,102,241,0.2);
+      transform: scale(1.05);
+      color: #fff;
     }
 
     .badge-web {
-      background: rgba(34,211,238,0.12);
+      background: linear-gradient(135deg, rgba(34,211,238,0.2), rgba(59,130,246,0.15));
+      border-color: rgba(34,211,238,0.25);
       color: #67e8f9;
     }
 
     .badge-web:hover {
-      background: rgba(34,211,238,0.25);
+      background: linear-gradient(135deg, rgba(34,211,238,0.35), rgba(59,130,246,0.25));
+      box-shadow: 0 0 25px rgba(34,211,238,0.2);
+      color: #fff;
     }
 
     .app-logo {
@@ -245,13 +483,16 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 0 20px 16px;
+      padding: 0 22px 16px;
       cursor: pointer;
       user-select: none;
       -webkit-user-select: none;
+      position: relative;
+      z-index: 1;
     }
 
     .preview-toggle-btn {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       font-size: 12px;
       font-weight: 500;
       color: #71717a;
@@ -301,7 +542,7 @@
     .screenshots-row {
       display: flex;
       gap: 10px;
-      padding: 0 20px 12px;
+      padding: 0 22px 12px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
@@ -316,18 +557,18 @@
       flex-shrink: 0;
       width: 130px;
       scroll-snap-align: start;
-      border-radius: 14px;
+      border-radius: 16px;
       overflow: hidden;
       position: relative;
       background: #111;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
-      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s;
       cursor: pointer;
     }
 
     .phone-frame:hover {
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.6), 0 0 0 1px rgba(99,102,241,0.2);
+      transform: translateY(-8px) scale(1.04);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 0 1px rgba(99,102,241,0.3), 0 0 30px rgba(99,102,241,0.1);
     }
 
     .phone-frame img {
@@ -338,10 +579,11 @@
 
     /* ---- More Button ---- */
     .more-row {
-      padding: 0 20px 20px;
+      padding: 0 22px 20px;
     }
 
     .more-btn {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -378,7 +620,7 @@
     .extra-screenshots {
       display: flex;
       gap: 10px;
-      padding: 0 20px 20px;
+      padding: 0 22px 20px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
@@ -507,34 +749,49 @@
     /* ---- Contact ---- */
     .contact-grid {
       display: flex;
-      gap: 10px;
+      gap: 12px;
       flex-wrap: wrap;
     }
 
     .contact-link {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 10px 16px;
+      gap: 10px;
+      padding: 16px 24px;
       background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
       color: #a1a1aa;
       text-decoration: none;
-      font-size: 13px;
-      transition: all 0.2s;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .contact-link:hover {
-      background: rgba(255,255,255,0.06);
-      border-color: rgba(255,255,255,0.12);
-      color: #e4e4e7;
+      background: rgba(99,102,241,0.08);
+      border-color: rgba(99,102,241,0.25);
+      color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(99,102,241,0.12);
     }
 
     .contact-link svg {
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
       flex-shrink: 0;
+    }
+
+    .contact-arrow {
+      width: 14px;
+      height: 14px;
+      color: #52525b;
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    .contact-link:hover .contact-arrow {
+      transform: translateX(3px);
+      color: #818cf8;
     }
 
     /* ---- Legal ---- */
@@ -544,18 +801,69 @@
       border-top: 1px solid rgba(255,255,255,0.06);
     }
 
+    .legal-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .legal-toggle {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: #52525b;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px 0;
+      transition: color 0.2s;
+    }
+
+    .legal-toggle:hover {
+      color: #818cf8;
+    }
+
+    .legal-toggle.active {
+      color: #818cf8;
+    }
+
+    .legal-sep {
+      color: #3f3f46;
+      font-size: 12px;
+    }
+
+    .legal-panel {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .legal-panel.open {
+      grid-template-rows: 1fr;
+    }
+
+    .legal-panel-inner {
+      overflow: hidden;
+    }
+
     .legal-content {
       font-size: 12px;
       color: #52525b;
       line-height: 1.8;
+      padding-top: 20px;
     }
 
-    .legal-content h3 {
+    .legal-content h4 {
       font-size: 12px;
       font-weight: 600;
-      color: #71717a;
-      margin-top: 20px;
-      margin-bottom: 6px;
+      color: #606068;
+      margin-top: 14px;
+      margin-bottom: 3px;
+    }
+
+    .legal-content h4:first-child {
+      margin-top: 0;
     }
 
     .legal-content a {
@@ -564,6 +872,11 @@
     }
 
     .legal-content a:hover { text-decoration: underline; }
+
+    .legal-date {
+      margin-top: 12px;
+      color: #3f3f46;
+    }
 
     .footer {
       text-align: center;
@@ -575,8 +888,8 @@
     /* ---- Animations ---- */
     .fade-in {
       opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
     .fade-in.visible {
@@ -584,26 +897,97 @@
       transform: translateY(0);
     }
 
+    /* Staggered children */
+    .stagger-in > * {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .stagger-in.visible > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stagger-in.visible > *:nth-child(1) { transition-delay: 0s; }
+    .stagger-in.visible > *:nth-child(2) { transition-delay: 0.05s; }
+    .stagger-in.visible > *:nth-child(3) { transition-delay: 0.08s; }
+    .stagger-in.visible > *:nth-child(4) { transition-delay: 0.04s; }
+
+    /* Tech grid stagger */
+    .tech-grid.visible .tech-card {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tech-grid .tech-card {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .tech-grid.visible .tech-card:nth-child(1) { transition-delay: 0.00s; }
+    .tech-grid.visible .tech-card:nth-child(2) { transition-delay: 0.03s; }
+    .tech-grid.visible .tech-card:nth-child(3) { transition-delay: 0.06s; }
+    .tech-grid.visible .tech-card:nth-child(4) { transition-delay: 0.09s; }
+    .tech-grid.visible .tech-card:nth-child(5) { transition-delay: 0.12s; }
+    .tech-grid.visible .tech-card:nth-child(6) { transition-delay: 0.15s; }
+    .tech-grid.visible .tech-card:nth-child(7) { transition-delay: 0.18s; }
+    .tech-grid.visible .tech-card:nth-child(8) { transition-delay: 0.21s; }
+    .tech-grid.visible .tech-card:nth-child(9) { transition-delay: 0.24s; }
+    .tech-grid.visible .tech-card:nth-child(10) { transition-delay: 0.27s; }
+    .tech-grid.visible .tech-card:nth-child(11) { transition-delay: 0.30s; }
+    .tech-grid.visible .tech-card:nth-child(12) { transition-delay: 0.33s; }
+    .tech-grid.visible .tech-card:nth-child(13) { transition-delay: 0.36s; }
+    .tech-grid.visible .tech-card:nth-child(14) { transition-delay: 0.39s; }
+    .tech-grid.visible .tech-card:nth-child(15) { transition-delay: 0.42s; }
+    .tech-grid.visible .tech-card:nth-child(16) { transition-delay: 0.45s; }
+    .tech-grid.visible .tech-card:nth-child(17) { transition-delay: 0.48s; }
+    .tech-grid.visible .tech-card:nth-child(18) { transition-delay: 0.51s; }
+    .tech-grid.visible .tech-card:nth-child(19) { transition-delay: 0.54s; }
+    .tech-grid.visible .tech-card:nth-child(20) { transition-delay: 0.57s; }
+    .tech-grid.visible .tech-card:nth-child(21) { transition-delay: 0.60s; }
+    .tech-grid.visible .tech-card:nth-child(22) { transition-delay: 0.63s; }
+
     /* ---- Responsive ---- */
+    @media (max-width: 700px) {
+      .tech-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .tech-card { padding: 10px 12px; }
+      .tech-label { font-size: 12px; }
+    }
+
     @media (max-width: 600px) {
       .container { padding: 48px 16px; }
-      h1 { font-size: 26px; }
+      h1 { font-size: 32px; }
+      .subtitle { font-size: 16px; }
+      .header { margin-bottom: 64px; }
+      .section { margin-bottom: 64px; }
+      .tech-section { margin-bottom: 64px; }
+      .tech-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
       .app-header { padding: 16px; }
-      .app-desc { white-space: normal; }
+      .app-desc { font-size: 13px; }
+      .app-tech-tags { padding: 0 16px 12px; }
       .screenshots-row { padding: 0 16px 12px; gap: 8px; }
       .extra-screenshots { padding-left: 16px; padding-right: 16px; gap: 8px; }
-      .phone-frame { width: 110px; }
+      .phone-frame { width: 120px; }
       .preview-toggle { padding: 0 16px 12px; }
       .more-row { padding: 0 16px 16px; }
-      .skill-row { flex-direction: column; gap: 6px; }
-      .skill-row-label { text-align: left; min-width: unset; }
       .contact-grid { flex-direction: column; }
       .contact-link { width: 100%; justify-content: center; }
+    }
+
+    @media (max-width: 380px) {
+      .tech-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
 <body>
-  <div class="gradient-bg"></div>
+  <div class="gradient-bg">
+    <div class="gradient-orb-1"></div>
+    <div class="gradient-orb-2"></div>
+    <div class="gradient-orb-3"></div>
+  </div>
+  <div class="cursor-glow" id="cursor-glow"></div>
 
   <!-- Lightbox -->
   <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
@@ -617,76 +1001,128 @@
   <div class="container">
 
     <!-- Header -->
-    <div class="header fade-in">
+    <div class="header fade-in stagger-in">
       <div class="avatar">DH</div>
       <h1>Cengiz Darian Hanci</h1>
       <p class="subtitle">Independent App Developer building thoughtful apps for iOS and the Web.</p>
       <p class="location">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        Bremen, Germany
+        <span class="status-dot"></span>
+        Available for projects
       </p>
-      <div class="skills-section">
-        <div class="skill-row">
-          <span class="skill-row-label">Languages</span>
-          <div class="skill-tags">
-            <span class="skill-tag tag-lang">Swift</span>
-            <span class="skill-tag tag-lang">TypeScript</span>
-            <span class="skill-tag tag-lang">JavaScript</span>
-          </div>
+    </div>
+
+    <!-- Tech Stack -->
+    <div class="tech-section">
+      <h2 class="fade-in">Tech Stack</h2>
+      <div class="tech-grid">
+        <!-- Languages -->
+        <div class="tech-card" data-cat="lang">
+          <div class="tech-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.508 0c-.287 0-.573 0-.86.002-.241.002-.483.003-.724.01-.132.003-.263.009-.395.015A9.154 9.154 0 004.252.2 5.095 5.095 0 003.2.594 4.885 4.885 0 001.762 1.762 5.095 5.095 0 00.594 3.2a9.154 9.154 0 00-.174 1.277 17.162 17.162 0 00-.047 1.119c-.007.241-.008.483-.01.724C.36 6.607.36 6.893.36 7.18v9.64c0 .287 0 .573.002.86.002.241.003.483.01.724.003.132.009.263.015.395.014.34.041.678.093 1.014a5.08 5.08 0 00.394 1.052 4.885 4.885 0 001.168 1.438c.438.37.93.65 1.438.823a5.08 5.08 0 001.052.394c.336.052.674.08 1.014.093.132.006.263.012.395.015.241.007.483.008.724.01.287.002.573.002.86.002h9.64c.287 0 .573 0 .86-.002.241-.002.483-.003.724-.01.132-.003.263-.009.395-.015a9.154 9.154 0 001.277-.174 5.095 5.095 0 001.052-.394 4.885 4.885 0 001.438-1.168c.37-.438.65-.93.823-1.438a5.08 5.08 0 00.394-1.052 9.154 9.154 0 00.093-1.014c.006-.132.012-.263.015-.395.007-.241.008-.483.01-.724.002-.287.002-.573.002-.86V7.18c0-.287 0-.573-.002-.86a17.162 17.162 0 00-.01-.724 9.614 9.614 0 00-.015-.395 9.154 9.154 0 00-.174-1.277 5.095 5.095 0 00-.394-1.052A4.885 4.885 0 0022.238 1.762 5.095 5.095 0 0020.8.594a9.154 9.154 0 00-1.277-.174 17.162 17.162 0 00-1.119-.047c-.241-.007-.483-.008-.724-.01C17.393.36 17.107.36 16.82.36H7.508zM18.15 4.89l-4.2 12.22h-2.12l4.2-12.22h2.12zm-7.47 9.41c-.05.36-.18.69-.4.97-.21.28-.5.5-.84.66-.34.16-.72.24-1.13.24-.5 0-.96-.12-1.35-.37a2.56 2.56 0 01-.93-1.04 3.24 3.24 0 01-.34-1.52c0-.57.11-1.07.34-1.52.23-.44.54-.79.93-1.04.39-.25.85-.37 1.35-.37.41 0 .79.08 1.13.24.34.16.63.38.84.66.22.28.35.61.4.97h-1.4c-.07-.2-.19-.37-.35-.49a.94.94 0 00-.6-.19c-.27 0-.5.07-.7.22-.2.15-.35.36-.46.62-.11.27-.16.57-.16.92s.05.66.16.92c.11.27.26.47.46.62.2.15.43.22.7.22.23 0 .44-.06.6-.19.16-.12.28-.29.35-.49h1.4z"/></svg></div>
+          <span class="tech-label">Swift</span>
         </div>
-        <div class="skill-row">
-          <span class="skill-row-label">iOS</span>
-          <div class="skill-tags">
-            <span class="skill-tag tag-ios">SwiftUI</span>
-            <span class="skill-tag tag-ios">UIKit</span>
-            <span class="skill-tag tag-ios">Combine</span>
-            <span class="skill-tag tag-ios">StoreKit 2</span>
-            <span class="skill-tag tag-ios">WidgetKit</span>
-            <span class="skill-tag tag-ios">Charts</span>
-          </div>
+        <div class="tech-card" data-cat="lang">
+          <div class="tech-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 011.306.34v2.458a3.95 3.95 0 00-.643-.361 5.093 5.093 0 00-.717-.26 5.453 5.453 0 00-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 00-.623.242c-.17.104-.3.229-.393.374a.888.888 0 00-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.473.597.615.954.142.356.214.764.214 1.224 0 .63-.14 1.156-.42 1.58-.28.422-.68.747-1.197.974-.517.227-1.133.34-1.846.34-.78 0-1.467-.072-2.063-.215a6.37 6.37 0 01-1.568-.571v-2.67a4.26 4.26 0 00.787.55 5.24 5.24 0 001.804.68c.31.065.621.097.933.097.302 0 .567-.033.795-.098a1.33 1.33 0 00.52-.292.674.674 0 00.206-.503c0-.194-.07-.366-.208-.516a2.3 2.3 0 00-.602-.42 8.172 8.172 0 00-.961-.424 11.07 11.07 0 01-1.263-.576 5.108 5.108 0 01-.964-.72 2.89 2.89 0 01-.613-.933c-.142-.358-.214-.787-.214-1.29 0-.597.13-1.105.39-1.524a2.66 2.66 0 011.09-.98c.472-.234 1.022-.351 1.651-.351zM10.333 3.91h2.77v6.303l3.853-6.303h3.08L16.042 10.5l4.25 6.597h-3.22l-3.97-6.454v6.454h-2.77V3.91z"/></svg></div>
+          <span class="tech-label">TypeScript</span>
         </div>
-        <div class="skill-row">
-          <span class="skill-row-label">Web</span>
-          <div class="skill-tags">
-            <span class="skill-tag tag-web">Next.js</span>
-            <span class="skill-tag tag-web">React</span>
-            <span class="skill-tag tag-web">Tailwind CSS</span>
-            <span class="skill-tag tag-web">Node.js</span>
-          </div>
+        <div class="tech-card" data-cat="lang">
+          <div class="tech-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.405-.6-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"/></svg></div>
+          <span class="tech-label">JavaScript</span>
         </div>
-        <div class="skill-row">
-          <span class="skill-row-label">Databases</span>
-          <div class="skill-tags">
-            <span class="skill-tag tag-db">Realm</span>
-            <span class="skill-tag tag-db">SwiftData</span>
-            <span class="skill-tag tag-db">Supabase</span>
-            <span class="skill-tag tag-db">PostgreSQL</span>
-          </div>
+        <!-- iOS -->
+        <div class="tech-card" data-cat="ios">
+          <div class="tech-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 16V8l4 4 4-4v8"/></svg></div>
+          <span class="tech-label">SwiftUI</span>
         </div>
-        <div class="skill-row">
-          <span class="skill-row-label">Cloud</span>
-          <div class="skill-tags">
-            <span class="skill-tag tag-cloud">Firebase</span>
-            <span class="skill-tag tag-cloud">Firestore</span>
-            <span class="skill-tag tag-cloud">Cloudflare</span>
-            <span class="skill-tag tag-cloud">Stripe</span>
-          </div>
+        <div class="tech-card" data-cat="ios">
+          <div class="tech-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></div>
+          <span class="tech-label">UIKit</span>
         </div>
-        <div class="skill-row">
-          <span class="skill-row-label">Other</span>
-          <div class="skill-tags">
-            <span class="skill-tag tag-other">REST APIs</span>
-            <span class="skill-tag tag-other">OAuth 2.0</span>
-            <span class="skill-tag tag-other">Git</span>
-            <span class="skill-tag tag-other">Framer Motion</span>
-          </div>
+        <div class="tech-card" data-cat="ios">
+          <div class="tech-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M4 12h16"/><path d="M12 4v16"/></svg></div>
+          <span class="tech-label">Combine</span>
+        </div>
+        <div class="tech-card" data-cat="ios">
+          <div class="tech-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
+          <span class="tech-label">StoreKit 2</span>
+        </div>
+        <div class="tech-card" data-cat="ios">
+          <div class="tech-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+          <span class="tech-label">WidgetKit</span>
+        </div>
+        <div class="tech-card" data-cat="ios">
+          <div class="tech-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 5 5-9"/></svg></div>
+          <span class="tech-label">Charts</span>
+        </div>
+        <!-- Web -->
+        <div class="tech-card" data-cat="web">
+          <div class="tech-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.572 0c-.176 0-.31.001-.358.007a19.76 19.76 0 01-.364.033C7.443.346 4.25 2.185 2.228 5.012a11.875 11.875 0 00-2.119 5.243c-.096.659-.108.854-.108 1.747s.012 1.089.108 1.748c.652 4.506 3.86 8.292 8.209 9.695.779.253 1.621.421 2.465.49.34.028.678.04.684.04h.014c.003-.001.007-.001.011-.001h.015c.01 0 .021 0 .031-.001.343-.001.681-.012 1.02-.04a12.075 12.075 0 002.465-.491c4.349-1.402 7.557-5.188 8.209-9.694.096-.659.108-.854.108-1.748 0-.893-.012-1.088-.108-1.747a11.88 11.88 0 00-2.119-5.243C19.75 2.185 16.557.346 13.15.049a19.76 19.76 0 00-.364-.033C12.74.009 12.614.004 12.438.001h-.866zM11.998 2.15a9.934 9.934 0 017.109 3.039h-.001a9.872 9.872 0 012.56 4.663H17.6a13.582 13.582 0 00-2.248-5.367l-.002-.003A13.54 13.54 0 0012.001 2.15h-.003zm-.004 0c-1.146.058-2.27.474-3.346 1.19V3.34A13.545 13.545 0 005.4 6.87 13.59 13.59 0 003.15 12.24V12.237H3.334a9.872 9.872 0 012.56-4.663A9.934 9.934 0 0112 2.15h-.006z"/></svg></div>
+          <span class="tech-label">Next.js</span>
+        </div>
+        <div class="tech-card" data-cat="web">
+          <div class="tech-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.23 12.004a2.236 2.236 0 01-2.235 2.236 2.236 2.236 0 01-2.236-2.236 2.236 2.236 0 012.235-2.236 2.236 2.236 0 012.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.31 0-.594.058-.84.178-.855.47-1.142 1.673-.788 3.394C2.467 6.132 0 8.651 0 11.004c0 2.357 2.461 4.872 5.469 6.103-.359 1.71-.072 2.907.783 3.377.246.12.53.178.84.178 1.346 0 3.107-.96 4.888-2.624 1.78 1.655 3.542 2.604 4.887 2.604.31 0 .594-.058.84-.178.855-.47 1.141-1.668.787-3.38C20.531 15.872 24 13.358 24 11.004c0-2.353-2.467-4.868-5.475-6.098.358-1.72.067-2.924-.783-3.394a1.524 1.524 0 00-.84-.178zm-.063 1.618c.103 0 .19.019.26.053.396.217.586.99.38 2.063-.056.29-.13.593-.218.905a14.638 14.638 0 00-2.868-.67 14.576 14.576 0 00-1.873-2.249c1.495-1.398 2.91-2.102 4.32-2.102zm-9.63.012c1.395 0 2.822.703 4.318 2.09a14.626 14.626 0 00-1.862 2.239 14.642 14.642 0 00-2.87.672 10.34 10.34 0 01-.217-.904c-.21-1.088-.014-1.864.382-2.08a.503.503 0 01.25-.047zm4.83 3.487a13.408 13.408 0 011.348 1.59 16.27 16.27 0 00-2.697 0 13.357 13.357 0 011.35-1.59zM5.151 7.754a13.345 13.345 0 011.56.758c-.339.35-.665.72-.975 1.107a16.39 16.39 0 01-.586-1.865zm13.697 0c-.142.61-.33 1.24-.585 1.865-.31-.388-.636-.757-.975-1.107.527-.272 1.065-.515 1.56-.758zM12 8.756a12.233 12.233 0 012.286 2.245A12.218 12.218 0 0112 13.244a12.215 12.215 0 01-2.284-2.243A12.233 12.233 0 0112 8.756zM3.82 9.168c.171.473.366.957.586 1.443-.22.487-.415.972-.586 1.444A10.963 10.963 0 012.08 11c0-.418.22-.923.62-1.455a6.52 6.52 0 01.005-.007c.33-.433.72-.854 1.115-1.248v-.122zm16.358 0c.396.394.785.815 1.114 1.248l.007.01c.4.528.62 1.035.62 1.453 0 .418-.22.923-.62 1.453a6.52 6.52 0 01-.007.01c-.33.433-.718.854-1.114 1.248-.172-.474-.367-.958-.587-1.444.22-.486.415-.97.587-1.443v-.535zM4.965 12.61c.189.625.412 1.257.67 1.887a13.355 13.355 0 01-1.56-.758c.143-.612.33-1.243.586-1.865l.304.736zm14.068 0l.306-.736c.255.622.443 1.253.585 1.865-.495.243-1.033.487-1.56.758.259-.63.48-1.262.67-1.887zM12 14.756c.87.858 1.622 1.604 2.286 2.245A12.233 12.233 0 0112 19.244a12.233 12.233 0 01-2.286-2.243A12.233 12.233 0 0112 14.756zm-4.564.746c.31.388.636.757.975 1.107a13.37 13.37 0 01-1.56-.758c.143-.61.33-1.24.585-1.865l-.001.003zm9.128 0l.001-.003c.256.626.443 1.256.586 1.865a13.37 13.37 0 01-1.56.758c.339-.35.664-.72.973-1.107v-.513zM6.71 17.894c.694.32 1.42.587 2.163.8a14.63 14.63 0 001.863 2.239c-1.496 1.387-2.923 2.09-4.318 2.09-.103 0-.19-.017-.26-.053-.396-.217-.585-.99-.38-2.063.057-.29.131-.593.218-.905.202-.652.44-1.368.714-2.108zm10.58 0c.274.74.512 1.456.715 2.108.087.312.161.615.217.905.206 1.073.016 1.846-.38 2.063a.505.505 0 01-.26.053c-1.408 0-2.835-.712-4.32-2.1a14.577 14.577 0 001.873-2.249 14.637 14.637 0 002.155-.78z"/></svg></div>
+          <span class="tech-label">React</span>
+        </div>
+        <div class="tech-card" data-cat="web">
+          <div class="tech-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"/></svg></div>
+          <span class="tech-label">Tailwind CSS</span>
+        </div>
+        <div class="tech-card" data-cat="web">
+          <div class="tech-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.998 24c-.321 0-.641-.084-.922-.247L8.14 22.016c-.438-.245-.224-.332-.08-.383.655-.228.787-.28 1.485-.677.073-.041.17-.025.245.018l2.254 1.338c.082.045.198.045.275 0l8.79-5.075a.281.281 0 00.135-.238V6.921a.284.284 0 00-.137-.242l-8.785-5.07a.272.272 0 00-.271 0L3.266 6.68a.284.284 0 00-.139.241v10.079c0 .098.053.19.139.236l2.408 1.392c1.307.654 2.108-.116 2.108-.89V7.787c0-.142.114-.253.256-.253h1.115c.139 0 .255.112.255.253v9.952c0 1.742-.949 2.742-2.601 2.742-.508 0-.909 0-2.026-.55l-2.306-1.326A1.851 1.851 0 011.56 17V6.921c0-.681.363-1.318.956-1.658L11.305.188a1.929 1.929 0 011.846 0l8.794 5.075c.593.34.959.977.959 1.658V17c0 .681-.366 1.317-.959 1.658l-8.794 5.075a1.899 1.899 0 01-.925.247h-.228z"/></svg></div>
+          <span class="tech-label">Node.js</span>
+        </div>
+        <!-- Databases -->
+        <div class="tech-card" data-cat="db">
+          <div class="tech-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+          <span class="tech-label">Realm</span>
+        </div>
+        <div class="tech-card" data-cat="db">
+          <div class="tech-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+          <span class="tech-label">SwiftData</span>
+        </div>
+        <div class="tech-card" data-cat="db">
+          <div class="tech-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div>
+          <span class="tech-label">Supabase</span>
+        </div>
+        <div class="tech-card" data-cat="db">
+          <div class="tech-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.128 0a10.134 10.134 0 00-2.755.403l-.063.02A10.922 10.922 0 0012.6.258C11.422.238 10.253.51 9.2 1.04 8.14.51 6.974.24 5.8.258a10.9 10.9 0 00-1.755.156l-.062.02A10.097 10.097 0 001.19 1.86C-.37 4.118-.447 7.725.614 10.493l.035.084a10.357 10.357 0 001.39 2.478 11.07 11.07 0 001.99 2.04 5.63 5.63 0 001.693 1.065 2.56 2.56 0 001.313.242l.082-.011c.512-.088.897-.338 1.182-.637a5.807 5.807 0 00.563-.806c.057.03.115.061.173.088.623.284 1.292.386 1.963.386.67 0 1.34-.102 1.963-.386.058-.027.116-.058.173-.088.166.301.361.569.563.806.285.3.67.549 1.182.637l.082.011c.444.06.892-.033 1.313-.242a5.607 5.607 0 001.693-1.065 11.085 11.085 0 001.99-2.04 10.37 10.37 0 001.39-2.478l.035-.084c1.061-2.768.984-6.375-.576-8.633a10.1 10.1 0 00-2.793-1.436z"/></svg></div>
+          <span class="tech-label">PostgreSQL</span>
+        </div>
+        <!-- Cloud -->
+        <div class="tech-card" data-cat="cloud">
+          <div class="tech-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.89 15.672L6.255.461A.542.542 0 017.27.288l2.543 4.771zm16.794 3.692l-2.25-13.999a.543.543 0 00-.919-.295L3.316 19.365l7.856 4.427a1.621 1.621 0 001.588 0zM14.3 7.147l-1.82-3.482a.542.542 0 00-.96 0L5.78 15.333z"/></svg></div>
+          <span class="tech-label">Firebase</span>
+        </div>
+        <div class="tech-card" data-cat="cloud">
+          <div class="tech-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg></div>
+          <span class="tech-label">Cloudflare</span>
+        </div>
+        <div class="tech-card" data-cat="cloud">
+          <div class="tech-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z"/></svg></div>
+          <span class="tech-label">Stripe</span>
+        </div>
+        <!-- Tools -->
+        <div class="tech-card" data-cat="tool">
+          <div class="tech-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></div>
+          <span class="tech-label">REST APIs</span>
+        </div>
+        <div class="tech-card" data-cat="tool">
+          <div class="tech-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+          <span class="tech-label">OAuth 2.0</span>
+        </div>
+        <div class="tech-card" data-cat="tool">
+          <div class="tech-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.546 10.93L13.067.452c-.604-.603-1.582-.603-2.188 0L8.708 2.627l2.76 2.76a1.838 1.838 0 012.386 2.346l2.66 2.66a1.838 1.838 0 011.929 3.07 1.838 1.838 0 01-2.983-2.114l-2.48-2.48v6.53a1.838 1.838 0 01.483 3.04 1.838 1.838 0 01-2.59-2.59c.16-.209.37-.381.612-.5V8.617a1.838 1.838 0 01-.997-2.41L7.755 3.474.452 10.776c-.603.603-.603 1.585 0 2.19l10.48 10.477c.604.604 1.582.604 2.186 0l10.43-10.43c.604-.603.604-1.582 0-2.186"/></svg></div>
+          <span class="tech-label">Git</span>
+        </div>
+        <div class="tech-card" data-cat="tool">
+          <div class="tech-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+          <span class="tech-label">Framer Motion</span>
         </div>
       </div>
     </div>
 
     <!-- iOS Apps -->
     <div class="section">
-      <h2>iOS Apps</h2>
+      <h2 class="fade-in">iOS Apps</h2>
       <div class="app-showcase">
 
         <!-- BoxTime -->
@@ -698,6 +1134,14 @@
               <div class="app-desc">Customizable round timer for boxing, MMA & combat sports training</div>
             </div>
             <a href="https://apps.apple.com/app/id6759327767" target="_blank" rel="noopener" class="app-badge">App Store</a>
+          </div>
+          <div class="app-tech-tags">
+            <span class="app-tech-tag">Swift</span>
+            <span class="app-tech-tag">SwiftUI</span>
+            <span class="app-tech-tag">Combine</span>
+            <span class="app-tech-tag">StoreKit 2</span>
+            <span class="app-tech-tag">Charts</span>
+            <span class="app-tech-tag">WidgetKit</span>
           </div>
           <div class="preview-toggle" onclick="toggleScreenshots(this)">
             <button class="preview-toggle-btn" type="button">
@@ -740,6 +1184,13 @@
             </div>
             <a href="https://apps.apple.com/app/6759969887" target="_blank" rel="noopener" class="app-badge">App Store</a>
           </div>
+          <div class="app-tech-tags">
+            <span class="app-tech-tag">Swift</span>
+            <span class="app-tech-tag">SwiftUI</span>
+            <span class="app-tech-tag">Combine</span>
+            <span class="app-tech-tag">Charts</span>
+            <span class="app-tech-tag">StoreKit 2</span>
+          </div>
           <div class="preview-toggle" onclick="toggleScreenshots(this)">
             <button class="preview-toggle-btn" type="button">
               App ansehen
@@ -781,6 +1232,13 @@
             </div>
             <a href="https://apps.apple.com/app/id6760429565" target="_blank" rel="noopener" class="app-badge">App Store</a>
           </div>
+          <div class="app-tech-tags">
+            <span class="app-tech-tag">Swift</span>
+            <span class="app-tech-tag">SwiftUI</span>
+            <span class="app-tech-tag">SwiftData</span>
+            <span class="app-tech-tag">Charts</span>
+            <span class="app-tech-tag">Realm</span>
+          </div>
           <div class="preview-toggle" onclick="toggleScreenshots(this)">
             <button class="preview-toggle-btn" type="button">
               App ansehen
@@ -817,7 +1275,7 @@
 
     <!-- Web Apps / SaaS -->
     <div class="section">
-      <h2>Web Apps</h2>
+      <h2 class="fade-in">Web Apps</h2>
       <div class="app-showcase">
 
         <!-- PostCore -->
@@ -828,6 +1286,14 @@
               <div class="app-desc">Schedule and publish content across 20+ platforms from one dashboard</div>
             </div>
             <a href="https://postcore-x.vercel.app" target="_blank" rel="noopener" class="app-badge badge-web">Open App</a>
+          </div>
+          <div class="app-tech-tags">
+            <span class="app-tech-tag">Next.js</span>
+            <span class="app-tech-tag">React</span>
+            <span class="app-tech-tag">TypeScript</span>
+            <span class="app-tech-tag">Tailwind CSS</span>
+            <span class="app-tech-tag">Supabase</span>
+            <span class="app-tech-tag">Stripe</span>
           </div>
         </div>
 
@@ -841,34 +1307,88 @@
         <a href="mailto:darian.hanci@gmail.com" class="contact-link">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           darian.hanci@gmail.com
+          <svg class="contact-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
         <a href="https://github.com/darian98" target="_blank" rel="noopener" class="contact-link">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
           GitHub
+          <svg class="contact-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
       </div>
     </div>
 
     <!-- Legal -->
     <div class="legal">
-      <div class="legal-content">
-        <h3>Impressum</h3>
-        <p>
-          Cengiz Darian Hanci<br>
-          Arsterdamm 127<br>
-          28279 Bremen<br>
-          Deutschland<br><br>
-          E-Mail: darian.hanci@gmail.com
-        </p>
-        <h3>Datenschutz</h3>
-        <p>
-          Diese Website erhebt keine personenbezogenen Daten, verwendet keine Cookies und nutzt keine Tracking-Dienste.
-          F&uuml;r die Datenschutzerkl&auml;rungen der einzelnen Apps besuchen Sie bitte die jeweilige App-Seite im App Store
-          oder die Web-App direkt.
-        </p>
-        <p>
-          Datenschutzerkl&auml;rung PostCore: <a href="https://postcore-x.vercel.app/datenschutz">postcore-x.vercel.app/datenschutz</a>
-        </p>
+      <div class="legal-links">
+        <button class="legal-toggle" onclick="toggleLegal('impressum')" type="button">Impressum</button>
+        <span class="legal-sep">&middot;</span>
+        <button class="legal-toggle" onclick="toggleLegal('datenschutz')" type="button">Datenschutz</button>
+      </div>
+
+      <div class="legal-panel" id="legal-impressum">
+        <div class="legal-panel-inner">
+          <div class="legal-content">
+            <p>
+              Angaben gem&auml;&szlig; &sect;5 DDG:<br><br>
+              Cengiz Darian Hanci<br>
+              Arsterdamm 127<br>
+              28279 Bremen<br>
+              Deutschland<br><br>
+              E-Mail: darian.hanci@gmail.com<br>
+              Telefon: +49 176 30450302
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="legal-panel" id="legal-datenschutz">
+        <div class="legal-panel-inner">
+          <div class="legal-content">
+            <h4>1. Verantwortlicher</h4>
+            <p>
+              Cengiz Darian Hanci<br>
+              Arsterdamm 127, 28279 Bremen, Deutschland<br>
+              E-Mail: darian.hanci@gmail.com
+            </p>
+
+            <h4>2. Hosting und Server-Log-Dateien</h4>
+            <p>
+              Diese Website wird &uuml;ber GitHub Pages (GitHub Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA) gehostet.
+              Beim Besuch erhebt GitHub automatisch: IP-Adresse, Datum/Uhrzeit, aufgerufene Seite, Referrer-URL, Browser und Betriebssystem.
+              Rechtsgrundlage: Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO (berechtigtes Interesse an Sicherheit und fehlerfreiem Betrieb).
+            </p>
+
+            <h4>3. Daten&uuml;bermittlung in Drittl&auml;nder</h4>
+            <p>
+              Durch das Hosting bei GitHub werden Daten in die USA &uuml;bertragen.
+              GitHub ist unter dem EU-U.S. Data Privacy Framework zertifiziert.
+              <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">Datenschutzerkl&auml;rung von GitHub</a>.
+            </p>
+
+            <h4>4. Cookies &amp; Tracking</h4>
+            <p>
+              Diese Website setzt keine eigenen Cookies und verwendet keine Analyse- oder Tracking-Dienste.
+              GitHub Pages kann technisch bedingte Cookies setzen, auf die der Betreiber keinen Einfluss hat.
+            </p>
+
+            <h4>5. Externe Links</h4>
+            <p>
+              Diese Website enth&auml;lt Links zu Drittanbietern (Apple App Store, GitHub, Vercel).
+              Es gelten die jeweiligen Datenschutzerkl&auml;rungen.
+              <a href="https://postcore-x.vercel.app/datenschutz" target="_blank" rel="noopener">Datenschutz PostCore</a>.
+            </p>
+
+            <h4>6. Ihre Rechte (Art.&nbsp;15&ndash;21 DSGVO)</h4>
+            <p>
+              Auskunft, Berichtigung, L&ouml;schung, Einschr&auml;nkung, Daten&uuml;bertragbarkeit, Widerspruch.
+              Beschwerderecht bei: Die Landesbeauftragte f&uuml;r Datenschutz Bremen,
+              Arndtstra&szlig;e 1, 27570 Bremerhaven &ndash;
+              <a href="https://www.datenschutz.bremen.de" target="_blank" rel="noopener">www.datenschutz.bremen.de</a>
+            </p>
+
+            <p class="legal-date">Stand: M&auml;rz 2026</p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -913,6 +1433,21 @@
     let currentApp = null;
     let currentIndex = 0;
 
+    // Cursor-following gradient (desktop only)
+    const cursorGlow = document.getElementById('cursor-glow');
+    if (window.matchMedia('(pointer: fine)').matches) {
+      document.addEventListener('mousemove', (e) => {
+        cursorGlow.style.left = e.clientX + 'px';
+        cursorGlow.style.top = e.clientY + 'px';
+        if (!cursorGlow.classList.contains('active')) {
+          cursorGlow.classList.add('active');
+        }
+      });
+      document.addEventListener('mouseleave', () => {
+        cursorGlow.classList.remove('active');
+      });
+    }
+
     // Toggle main screenshots panel
     function toggleScreenshots(el) {
       const btn = el.querySelector('.preview-toggle-btn');
@@ -922,7 +1457,6 @@
       if (isOpen) {
         panel.classList.remove('open');
         btn.classList.remove('active');
-        // Also close extra if open
         const extra = panel.querySelector('.extra-screenshots');
         const moreBtn = panel.querySelector('.more-btn');
         if (extra) { extra.classList.remove('visible'); }
@@ -981,14 +1515,30 @@
       if (e.key === 'ArrowRight') navLightbox(e, 1);
     });
 
-    // Scroll fade-in
+    // Scroll fade-in with Intersection Observer
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    document.querySelectorAll('.fade-in, .stagger-in, .tech-grid').forEach(el => observer.observe(el));
+
+    // Legal toggle
+    function toggleLegal(id) {
+      const panel = document.getElementById('legal-' + id);
+      const btn = panel.previousElementSibling.closest('.legal').querySelector('.legal-toggle[onclick*="' + id + '"]');
+      const isOpen = panel.classList.contains('open');
+
+      // Close all panels first
+      document.querySelectorAll('.legal-panel').forEach(p => p.classList.remove('open'));
+      document.querySelectorAll('.legal-toggle').forEach(b => b.classList.remove('active'));
+
+      if (!isOpen) {
+        panel.classList.add('open');
+        btn.classList.add('active');
+      }
+    }
   </script>
 </body>
 </html>
