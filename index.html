@@ -84,20 +84,41 @@
       color: #71717a;
     }
 
-    .tech-stack {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 24px;
+    /* ---- Skills Grid ---- */
+    .skills-section {
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
     }
 
-    .tech-tag {
+    .skill-group {
+      padding: 16px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+    }
+
+    .skill-group-title {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #52525b;
+      margin-bottom: 10px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .skill-tag {
       font-size: 12px;
-      padding: 5px 12px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.04);
       color: #a1a1aa;
       letter-spacing: 0.01em;
     }
@@ -573,13 +594,62 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         Bremen, Germany
       </p>
-      <div class="tech-stack">
-        <span class="tech-tag">Swift</span>
-        <span class="tech-tag">SwiftUI</span>
-        <span class="tech-tag">Next.js</span>
-        <span class="tech-tag">React</span>
-        <span class="tech-tag">TypeScript</span>
-        <span class="tech-tag">Node.js</span>
+      <div class="skills-section">
+        <div class="skill-group">
+          <div class="skill-group-title">Languages</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Swift</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">JavaScript</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">iOS Frameworks</div>
+          <div class="skill-tags">
+            <span class="skill-tag">SwiftUI</span>
+            <span class="skill-tag">UIKit</span>
+            <span class="skill-tag">Combine</span>
+            <span class="skill-tag">StoreKit 2</span>
+            <span class="skill-tag">WidgetKit</span>
+            <span class="skill-tag">Charts</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Web</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Next.js</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Tailwind CSS</span>
+            <span class="skill-tag">Node.js</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Databases</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Realm</span>
+            <span class="skill-tag">SwiftData</span>
+            <span class="skill-tag">Supabase</span>
+            <span class="skill-tag">PostgreSQL</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Backend & Cloud</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Firebase</span>
+            <span class="skill-tag">Firestore</span>
+            <span class="skill-tag">Cloudflare</span>
+            <span class="skill-tag">Stripe</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Other</div>
+          <div class="skill-tags">
+            <span class="skill-tag">REST APIs</span>
+            <span class="skill-tag">OAuth 2.0</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">Framer Motion</span>
+          </div>
+        </div>
       </div>
     </div>
 
