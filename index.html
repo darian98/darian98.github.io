@@ -251,7 +251,7 @@
     .screenshots-row {
       display: flex;
       gap: 10px;
-      padding: 0 20px 20px;
+      padding: 0 20px 12px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
@@ -272,6 +272,7 @@
       background: #111;
       box-shadow: 0 2px 16px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
       transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s;
+      cursor: pointer;
     }
 
     .phone-frame:hover {
@@ -285,31 +286,88 @@
       display: block;
     }
 
-    /* Gallery divider */
-    .gallery-divider {
-      flex-shrink: 0;
-      width: 1px;
-      align-self: stretch;
-      background: rgba(255,255,255,0.08);
-      margin: 8px 6px;
-      border-radius: 1px;
+    /* ---- More Button ---- */
+    .more-row {
+      padding: 0 20px 20px;
     }
 
-    .gallery-label {
-      flex-shrink: 0;
-      display: flex;
+    .more-btn {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      font-size: 10px;
+      gap: 6px;
+      font-size: 12px;
       font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
       color: #52525b;
-      padding: 0 2px;
-      user-select: none;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 8px;
+      padding: 6px 14px;
+      cursor: pointer;
+      transition: all 0.2s;
     }
+
+    .more-btn:hover {
+      color: #a1a1aa;
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    .more-btn svg {
+      width: 12px;
+      height: 12px;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .more-btn.active svg {
+      transform: rotate(180deg);
+    }
+
+    .more-btn.hidden { display: none; }
+
+    /* Extra screenshots - animated reveal */
+    .extra-screenshots {
+      display: flex;
+      gap: 10px;
+      padding: 0 20px 20px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-behavior: smooth;
+      max-height: 0;
+      opacity: 0;
+      overflow-y: hidden;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                  opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                  padding 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    .extra-screenshots::-webkit-scrollbar { display: none; }
+
+    .extra-screenshots.visible {
+      max-height: 400px;
+      opacity: 1;
+      padding-bottom: 20px;
+    }
+
+    .extra-screenshots .phone-frame {
+      opacity: 0;
+      transform: translateY(12px) scale(0.95);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .extra-screenshots.visible .phone-frame {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .extra-screenshots.visible .phone-frame:nth-child(1) { transition-delay: 0.05s; }
+    .extra-screenshots.visible .phone-frame:nth-child(2) { transition-delay: 0.1s; }
+    .extra-screenshots.visible .phone-frame:nth-child(3) { transition-delay: 0.15s; }
+    .extra-screenshots.visible .phone-frame:nth-child(4) { transition-delay: 0.2s; }
+    .extra-screenshots.visible .phone-frame:nth-child(5) { transition-delay: 0.25s; }
 
     /* ---- Lightbox ---- */
     .lightbox {
@@ -482,9 +540,11 @@
       h1 { font-size: 26px; }
       .app-header { padding: 16px; }
       .app-desc { white-space: normal; }
-      .screenshots-row { padding: 0 16px 16px; gap: 8px; }
+      .screenshots-row { padding: 0 16px 12px; gap: 8px; }
+      .extra-screenshots { padding-left: 16px; padding-right: 16px; gap: 8px; }
       .phone-frame { width: 110px; }
       .preview-toggle { padding: 0 16px 12px; }
+      .more-row { padding: 0 16px 16px; }
       .contact-grid { flex-direction: column; }
       .contact-link { width: 100%; justify-content: center; }
     }
@@ -540,7 +600,7 @@
           </div>
           <div class="preview-toggle" onclick="toggleScreenshots(this)">
             <button class="preview-toggle-btn" type="button">
-              Screenshots
+              App ansehen
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
             <div class="preview-line"></div>
@@ -551,10 +611,16 @@
                 <div class="phone-frame" onclick="openLightbox('boxtime',0)"><img src="screenshots/boxtime/work.png" alt="Work Phase" loading="lazy"></div>
                 <div class="phone-frame" onclick="openLightbox('boxtime',1)"><img src="screenshots/boxtime/rest.png" alt="Rest Phase" loading="lazy"></div>
                 <div class="phone-frame" onclick="openLightbox('boxtime',2)"><img src="screenshots/boxtime/trainings.png" alt="Trainings" loading="lazy"></div>
-                <div class="gallery-divider"></div>
-                <div class="gallery-label">More</div>
-                <div class="phone-frame" onclick="openLightbox('boxtime',3)"><img src="screenshots/boxtime/work-light.png" alt="Work Phase Light" loading="lazy"></div>
-                <div class="phone-frame" onclick="openLightbox('boxtime',4)"><img src="screenshots/boxtime/rest-light.png" alt="Rest Phase Light" loading="lazy"></div>
+              </div>
+              <div class="more-row">
+                <button class="more-btn" onclick="toggleExtra(this)" type="button">
+                  Mehr entdecken
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+              </div>
+              <div class="extra-screenshots" data-app="boxtime">
+                <div class="phone-frame" onclick="openLightbox('boxtime',3)"><img src="screenshots/boxtime/preparation.png" alt="Preparation Phase" loading="lazy"></div>
+                <div class="phone-frame" onclick="openLightbox('boxtime',4)"><img src="screenshots/boxtime/multi-round.png" alt="Multi-Round Training" loading="lazy"></div>
                 <div class="phone-frame" onclick="openLightbox('boxtime',5)"><img src="screenshots/boxtime/quickstart.png" alt="Quick Start" loading="lazy"></div>
                 <div class="phone-frame" onclick="openLightbox('boxtime',6)"><img src="screenshots/boxtime/stats.png" alt="Statistics" loading="lazy"></div>
                 <div class="phone-frame" onclick="openLightbox('boxtime',7)"><img src="screenshots/boxtime/success.png" alt="Training Complete" loading="lazy"></div>
@@ -575,7 +641,7 @@
           </div>
           <div class="preview-toggle" onclick="toggleScreenshots(this)">
             <button class="preview-toggle-btn" type="button">
-              Screenshots
+              App ansehen
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
             <div class="preview-line"></div>
@@ -586,8 +652,14 @@
                 <div class="phone-frame" onclick="openLightbox('lunair',0)"><img src="screenshots/lunair/home.png" alt="Home" loading="lazy"></div>
                 <div class="phone-frame" onclick="openLightbox('lunair',1)"><img src="screenshots/lunair/session.png" alt="Breathing Session" loading="lazy"></div>
                 <div class="phone-frame" onclick="openLightbox('lunair',2)"><img src="screenshots/lunair/library.png" alt="Technique Library" loading="lazy"></div>
-                <div class="gallery-divider"></div>
-                <div class="gallery-label">More</div>
+              </div>
+              <div class="more-row">
+                <button class="more-btn" onclick="toggleExtra(this)" type="button">
+                  Mehr entdecken
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+              </div>
+              <div class="extra-screenshots" data-app="lunair">
                 <div class="phone-frame" onclick="openLightbox('lunair',3)"><img src="screenshots/lunair/exhale.png" alt="Exhale" loading="lazy"></div>
                 <div class="phone-frame" onclick="openLightbox('lunair',4)"><img src="screenshots/lunair/hold.png" alt="Hold" loading="lazy"></div>
                 <div class="phone-frame" onclick="openLightbox('lunair',5)"><img src="screenshots/lunair/technique.png" alt="Technique Detail" loading="lazy"></div>
@@ -610,7 +682,7 @@
           </div>
           <div class="preview-toggle" onclick="toggleScreenshots(this)">
             <button class="preview-toggle-btn" type="button">
-              Screenshots
+              App ansehen
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
             <div class="preview-line"></div>
@@ -621,8 +693,14 @@
                 <div class="phone-frame" onclick="openLightbox('sola',0)"><img src="screenshots/sola/entry.png" alt="Journal Entry" loading="lazy"></div>
                 <div class="phone-frame" onclick="openLightbox('sola',1)"><img src="screenshots/sola/today.png" alt="Today View" loading="lazy"></div>
                 <div class="phone-frame" onclick="openLightbox('sola',2)"><img src="screenshots/sola/insights.png" alt="Insights" loading="lazy"></div>
-                <div class="gallery-divider"></div>
-                <div class="gallery-label">More</div>
+              </div>
+              <div class="more-row">
+                <button class="more-btn" onclick="toggleExtra(this)" type="button">
+                  Mehr entdecken
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+              </div>
+              <div class="extra-screenshots" data-app="sola">
                 <div class="phone-frame" onclick="openLightbox('sola',3)"><img src="screenshots/sola/entries.png" alt="Entries Timeline" loading="lazy"></div>
                 <div class="phone-frame" onclick="openLightbox('sola',4)"><img src="screenshots/sola/calendar.png" alt="Calendar View" loading="lazy"></div>
                 <div class="phone-frame" onclick="openLightbox('sola',5)"><img src="screenshots/sola/mood-trends.png" alt="Mood Trends" loading="lazy"></div>
@@ -691,14 +769,13 @@
   </div>
 
   <script>
-    // Screenshot data for lightbox navigation
     const appScreenshots = {
       boxtime: [
         'screenshots/boxtime/work.png',
         'screenshots/boxtime/rest.png',
         'screenshots/boxtime/trainings.png',
-        'screenshots/boxtime/work-light.png',
-        'screenshots/boxtime/rest-light.png',
+        'screenshots/boxtime/preparation.png',
+        'screenshots/boxtime/multi-round.png',
         'screenshots/boxtime/quickstart.png',
         'screenshots/boxtime/stats.png',
         'screenshots/boxtime/success.png'
@@ -728,7 +805,7 @@
     let currentApp = null;
     let currentIndex = 0;
 
-    // Toggle expandable screenshots
+    // Toggle main screenshots panel
     function toggleScreenshots(el) {
       const btn = el.querySelector('.preview-toggle-btn');
       const panel = el.nextElementSibling;
@@ -737,8 +814,27 @@
       if (isOpen) {
         panel.classList.remove('open');
         btn.classList.remove('active');
+        // Also close extra if open
+        const extra = panel.querySelector('.extra-screenshots');
+        const moreBtn = panel.querySelector('.more-btn');
+        if (extra) { extra.classList.remove('visible'); }
+        if (moreBtn) { moreBtn.classList.remove('active'); }
       } else {
         panel.classList.add('open');
+        btn.classList.add('active');
+      }
+    }
+
+    // Toggle extra screenshots
+    function toggleExtra(btn) {
+      const extra = btn.closest('.screenshots-inner').querySelector('.extra-screenshots');
+      const isVisible = extra.classList.contains('visible');
+
+      if (isVisible) {
+        extra.classList.remove('visible');
+        btn.classList.remove('active');
+      } else {
+        extra.classList.add('visible');
         btn.classList.add('active');
       }
     }
@@ -748,11 +844,8 @@
       currentApp = app;
       currentIndex = index;
       const lb = document.getElementById('lightbox');
-      const img = document.getElementById('lightbox-img');
-      const counter = document.getElementById('lightbox-counter');
-
-      img.src = appScreenshots[app][index];
-      counter.textContent = (index + 1) + ' / ' + appScreenshots[app].length;
+      document.getElementById('lightbox-img').src = appScreenshots[app][index];
+      document.getElementById('lightbox-counter').textContent = (index + 1) + ' / ' + appScreenshots[app].length;
       lb.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
@@ -772,7 +865,6 @@
       document.getElementById('lightbox-counter').textContent = (currentIndex + 1) + ' / ' + total;
     }
 
-    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
       const lb = document.getElementById('lightbox');
       if (!lb.classList.contains('active')) return;
