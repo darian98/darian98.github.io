@@ -114,11 +114,14 @@
       width: 56px;
       height: 56px;
       border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
       flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .app-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .app-info {
@@ -147,10 +150,6 @@
       white-space: nowrap;
     }
 
-    .boxtime .app-icon { background: linear-gradient(135deg, #ef4444, #dc2626); }
-    .lunair .app-icon { background: linear-gradient(135deg, #3b82f6, #06b6d4); }
-    .sola .app-icon { background: linear-gradient(135deg, #f59e0b, #f97316); }
-    .postcore .app-icon { background: linear-gradient(135deg, #6366f1, #a855f7); }
 
     .contact-list {
       list-style: none;
@@ -223,8 +222,8 @@
       <h2>Apps</h2>
       <div class="apps-grid">
 
-        <a href="https://apps.apple.com/app/id6759327767" target="_blank" rel="noopener" class="app-card boxtime">
-          <div class="app-icon">&#129354;</div>
+        <a href="https://apps.apple.com/app/id6759327767" target="_blank" rel="noopener" class="app-card">
+          <div class="app-icon"><img src="icons/boxtime.png" alt="BoxTime"></div>
           <div class="app-info">
             <div class="app-name">BoxTime</div>
             <div class="app-desc">Boxing Timer &mdash; Customizable round timer for boxing, MMA, and combat sports training.</div>
@@ -232,8 +231,8 @@
           <span class="app-badge">App Store</span>
         </a>
 
-        <a href="https://apps.apple.com/app/6759969887" target="_blank" rel="noopener" class="app-card lunair">
-          <div class="app-icon">&#128172;</div>
+        <a href="https://apps.apple.com/app/6759969887" target="_blank" rel="noopener" class="app-card">
+          <div class="app-icon"><img src="icons/lunair.png" alt="Lunair"></div>
           <div class="app-info">
             <div class="app-name">Lunair</div>
             <div class="app-desc">Breathing Exercises &mdash; Guided breathing techniques for relaxation, focus, and mindfulness.</div>
@@ -241,8 +240,8 @@
           <span class="app-badge">App Store</span>
         </a>
 
-        <a href="https://apps.apple.com/app/id6760429565" target="_blank" rel="noopener" class="app-card sola">
-          <div class="app-icon">&#128221;</div>
+        <a href="https://apps.apple.com/app/id6760429565" target="_blank" rel="noopener" class="app-card">
+          <div class="app-icon"><img src="icons/sola.png" alt="Sola"></div>
           <div class="app-info">
             <div class="app-name">Sola</div>
             <div class="app-desc">Private Journal &mdash; A secure, personal journal for daily reflections and thoughts.</div>
@@ -250,8 +249,8 @@
           <span class="app-badge">App Store</span>
         </a>
 
-        <a href="https://postcore-x.vercel.app" target="_blank" rel="noopener" class="app-card postcore">
-          <div class="app-icon">P</div>
+        <a href="https://postcore-x.vercel.app" target="_blank" rel="noopener" class="app-card">
+          <div class="app-icon"><img src="icons/postcore.png" alt="PostCore"></div>
           <div class="app-info">
             <div class="app-name">PostCore</div>
             <div class="app-desc">Social Media Management &mdash; Schedule and publish content across multiple platforms from one dashboard.</div>
