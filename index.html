@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cengiz Darian Hanci - App Developer</title>
+  <meta name="description" content="Independent App Developer from Bremen, Germany. Creator of BoxTime, Lunair, Sola, and PostCore.">
+  <meta property="og:title" content="Cengiz Darian Hanci - App Developer">
+  <meta property="og:description" content="Independent App Developer from Bremen, Germany. Building apps people love.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://darian98.github.io">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -19,100 +24,123 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 400px;
+      height: 500px;
       background: radial-gradient(ellipse at 50% 0%, rgba(99,102,241,0.15) 0%, transparent 70%);
       pointer-events: none;
       z-index: 0;
     }
 
     .container {
-      max-width: 720px;
+      max-width: 800px;
       margin: 0 auto;
       padding: 80px 24px;
       position: relative;
       z-index: 1;
     }
 
+    /* Header */
     .header {
       text-align: center;
-      margin-bottom: 64px;
+      margin-bottom: 72px;
     }
 
     .avatar {
-      width: 88px;
-      height: 88px;
+      width: 96px;
+      height: 96px;
       border-radius: 50%;
       background: linear-gradient(135deg, #6366f1, #a855f7);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 36px;
+      font-size: 38px;
       font-weight: 700;
       color: white;
       margin: 0 auto 24px;
     }
 
     h1 {
-      font-size: 28px;
+      font-size: 32px;
       font-weight: 700;
       margin-bottom: 8px;
       color: #fff;
     }
 
     .subtitle {
-      font-size: 16px;
+      font-size: 17px;
       color: #a1a1aa;
       line-height: 1.6;
+      max-width: 480px;
+      margin: 0 auto;
     }
 
     .location {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      margin-top: 12px;
+      margin-top: 16px;
       font-size: 14px;
       color: #71717a;
     }
 
+    /* Tech stack */
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .tech-tag {
+      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #a1a1aa;
+    }
+
+    /* Section */
     h2 {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 600;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       color: #fff;
     }
 
     .section {
-      margin-bottom: 48px;
+      margin-bottom: 56px;
     }
 
-    .apps-grid {
+    /* App cards */
+    .app-showcase {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 32px;
     }
 
-    .app-card {
+    .app-block {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+
+    .app-block:hover {
+      border-color: rgba(99,102,241,0.3);
+    }
+
+    .app-header {
       display: flex;
       align-items: center;
       gap: 16px;
-      padding: 20px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 16px;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.2s;
-    }
-
-    .app-card:hover {
-      background: rgba(255,255,255,0.07);
-      border-color: rgba(99,102,241,0.3);
-      transform: translateY(-2px);
+      padding: 24px 24px 0;
     }
 
     .app-icon {
-      width: 56px;
-      height: 56px;
+      width: 60px;
+      height: 60px;
       border-radius: 14px;
       flex-shrink: 0;
       overflow: hidden;
@@ -124,54 +152,106 @@
       object-fit: cover;
     }
 
-    .app-info {
+    .app-meta {
       flex: 1;
     }
 
     .app-name {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 600;
       color: #fff;
       margin-bottom: 4px;
     }
 
     .app-desc {
-      font-size: 13px;
+      font-size: 14px;
       color: #a1a1aa;
-      line-height: 1.4;
+      line-height: 1.5;
     }
 
     .app-badge {
       font-size: 12px;
-      padding: 4px 10px;
+      padding: 5px 12px;
       border-radius: 20px;
       background: rgba(99,102,241,0.15);
       color: #818cf8;
       white-space: nowrap;
-    }
-
-
-    .contact-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .contact-list li {
-      font-size: 14px;
-      color: #a1a1aa;
-    }
-
-    .contact-list a {
-      color: #818cf8;
       text-decoration: none;
+      transition: background 0.2s;
     }
 
-    .contact-list a:hover {
-      text-decoration: underline;
+    .app-badge:hover {
+      background: rgba(99,102,241,0.3);
     }
 
+    /* Screenshot carousel */
+    .screenshots {
+      display: flex;
+      gap: 12px;
+      padding: 20px 24px 24px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .screenshots::-webkit-scrollbar {
+      display: none;
+    }
+
+    .screenshot {
+      flex-shrink: 0;
+      width: 140px;
+      border-radius: 12px;
+      overflow: hidden;
+      scroll-snap-align: start;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      transition: transform 0.2s;
+    }
+
+    .screenshot:hover {
+      transform: scale(1.03);
+    }
+
+    .screenshot img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      color: #e4e4e7;
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .contact-link:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(99,102,241,0.3);
+    }
+
+    .contact-link svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    /* Legal */
     .legal {
       margin-top: 64px;
       padding-top: 32px;
@@ -192,6 +272,15 @@
       margin-bottom: 8px;
     }
 
+    .legal-content a {
+      color: #818cf8;
+      text-decoration: none;
+    }
+
+    .legal-content a:hover {
+      text-decoration: underline;
+    }
+
     .footer {
       text-align: center;
       margin-top: 48px;
@@ -199,11 +288,28 @@
       color: #52525b;
     }
 
-    @media (max-width: 480px) {
+    /* Fade-in animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
       .container { padding: 48px 16px; }
-      h1 { font-size: 24px; }
-      .app-card { padding: 16px; }
+      h1 { font-size: 26px; }
+      .app-header { padding: 20px 20px 0; }
+      .screenshots { padding: 16px 20px 20px; }
+      .screenshot { width: 120px; }
       .app-badge { display: none; }
+      .contact-grid { flex-direction: column; }
+      .contact-link { width: 100%; }
     }
   </style>
 </head>
@@ -211,64 +317,112 @@
   <div class="gradient-bg"></div>
   <div class="container">
 
-    <div class="header">
+    <!-- Header -->
+    <div class="header fade-in">
       <div class="avatar">DH</div>
       <h1>Cengiz Darian Hanci</h1>
-      <p class="subtitle">Independent App Developer</p>
-      <p class="location">Bremen, Deutschland</p>
+      <p class="subtitle">Independent App Developer building thoughtful apps for iOS and the Web.</p>
+      <p class="location">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Bremen, Germany
+      </p>
+      <div class="tech-stack">
+        <span class="tech-tag">Swift</span>
+        <span class="tech-tag">SwiftUI</span>
+        <span class="tech-tag">Next.js</span>
+        <span class="tech-tag">React</span>
+        <span class="tech-tag">TypeScript</span>
+        <span class="tech-tag">Node.js</span>
+      </div>
     </div>
 
+    <!-- Apps -->
     <div class="section">
       <h2>Apps</h2>
-      <div class="apps-grid">
+      <div class="app-showcase">
 
-        <a href="https://apps.apple.com/app/id6759327767" target="_blank" rel="noopener" class="app-card">
-          <div class="app-icon"><img src="icons/boxtime.png" alt="BoxTime"></div>
-          <div class="app-info">
-            <div class="app-name">BoxTime</div>
-            <div class="app-desc">Boxing Timer &mdash; Customizable round timer for boxing, MMA, and combat sports training.</div>
+        <!-- BoxTime -->
+        <div class="app-block fade-in">
+          <div class="app-header">
+            <div class="app-icon"><img src="icons/boxtime.png" alt="BoxTime" loading="lazy"></div>
+            <div class="app-meta">
+              <div class="app-name">BoxTime</div>
+              <div class="app-desc">Customizable round timer for boxing, MMA, and combat sports training.</div>
+            </div>
+            <a href="https://apps.apple.com/app/id6759327767" target="_blank" rel="noopener" class="app-badge">App Store</a>
           </div>
-          <span class="app-badge">App Store</span>
-        </a>
+          <div class="screenshots">
+            <div class="screenshot"><img src="screenshots/boxtime/work.png" alt="BoxTime Work Phase" loading="lazy"></div>
+            <div class="screenshot"><img src="screenshots/boxtime/rest.png" alt="BoxTime Rest Phase" loading="lazy"></div>
+            <div class="screenshot"><img src="screenshots/boxtime/trainings.png" alt="BoxTime Trainings" loading="lazy"></div>
+          </div>
+        </div>
 
-        <a href="https://apps.apple.com/app/6759969887" target="_blank" rel="noopener" class="app-card">
-          <div class="app-icon"><img src="icons/lunair.png" alt="Lunair"></div>
-          <div class="app-info">
-            <div class="app-name">Lunair</div>
-            <div class="app-desc">Breathing Exercises &mdash; Guided breathing techniques for relaxation, focus, and mindfulness.</div>
+        <!-- Lunair -->
+        <div class="app-block fade-in">
+          <div class="app-header">
+            <div class="app-icon"><img src="icons/lunair.png" alt="Lunair" loading="lazy"></div>
+            <div class="app-meta">
+              <div class="app-name">Lunair</div>
+              <div class="app-desc">Guided breathing techniques for relaxation, focus, and mindfulness.</div>
+            </div>
+            <a href="https://apps.apple.com/app/6759969887" target="_blank" rel="noopener" class="app-badge">App Store</a>
           </div>
-          <span class="app-badge">App Store</span>
-        </a>
+          <div class="screenshots">
+            <div class="screenshot"><img src="screenshots/lunair/home.png" alt="Lunair Home" loading="lazy"></div>
+            <div class="screenshot"><img src="screenshots/lunair/session.png" alt="Lunair Session" loading="lazy"></div>
+            <div class="screenshot"><img src="screenshots/lunair/library.png" alt="Lunair Library" loading="lazy"></div>
+          </div>
+        </div>
 
-        <a href="https://apps.apple.com/app/id6760429565" target="_blank" rel="noopener" class="app-card">
-          <div class="app-icon"><img src="icons/sola.png" alt="Sola"></div>
-          <div class="app-info">
-            <div class="app-name">Sola</div>
-            <div class="app-desc">Private Journal &mdash; A secure, personal journal for daily reflections and thoughts.</div>
+        <!-- Sola -->
+        <div class="app-block fade-in">
+          <div class="app-header">
+            <div class="app-icon"><img src="icons/sola.png" alt="Sola" loading="lazy"></div>
+            <div class="app-meta">
+              <div class="app-name">Sola</div>
+              <div class="app-desc">A secure, personal journal for daily reflections, gratitude, and thoughts.</div>
+            </div>
+            <a href="https://apps.apple.com/app/id6760429565" target="_blank" rel="noopener" class="app-badge">App Store</a>
           </div>
-          <span class="app-badge">App Store</span>
-        </a>
+          <div class="screenshots">
+            <div class="screenshot"><img src="screenshots/sola/entry.png" alt="Sola Entry" loading="lazy"></div>
+            <div class="screenshot"><img src="screenshots/sola/today.png" alt="Sola Today" loading="lazy"></div>
+            <div class="screenshot"><img src="screenshots/sola/insights.png" alt="Sola Insights" loading="lazy"></div>
+          </div>
+        </div>
 
-        <a href="https://postcore-x.vercel.app" target="_blank" rel="noopener" class="app-card">
-          <div class="app-icon"><img src="icons/postcore.png" alt="PostCore"></div>
-          <div class="app-info">
-            <div class="app-name">PostCore</div>
-            <div class="app-desc">Social Media Management &mdash; Schedule and publish content across multiple platforms from one dashboard.</div>
+        <!-- PostCore -->
+        <div class="app-block fade-in">
+          <div class="app-header">
+            <div class="app-icon"><img src="icons/postcore.png" alt="PostCore" loading="lazy"></div>
+            <div class="app-meta">
+              <div class="app-name">PostCore</div>
+              <div class="app-desc">Schedule and publish content across multiple platforms from one dashboard.</div>
+            </div>
+            <a href="https://postcore-x.vercel.app" target="_blank" rel="noopener" class="app-badge">Web App</a>
           </div>
-          <span class="app-badge">Web App</span>
-        </a>
+        </div>
 
       </div>
     </div>
 
-    <div class="section">
-      <h2>Contact</h2>
-      <ul class="contact-list">
-        <li>E-Mail: <a href="mailto:darian.hanci@gmail.com">darian.hanci@gmail.com</a></li>
-        <li>GitHub: <a href="https://github.com/darian98" target="_blank" rel="noopener">github.com/darian98</a></li>
-      </ul>
+    <!-- Contact -->
+    <div class="section fade-in">
+      <h2>Get in touch</h2>
+      <div class="contact-grid">
+        <a href="mailto:darian.hanci@gmail.com" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          darian.hanci@gmail.com
+        </a>
+        <a href="https://github.com/darian98" target="_blank" rel="noopener" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
     </div>
 
+    <!-- Legal -->
     <div class="legal">
       <div class="legal-content">
         <h3>Impressum</h3>
@@ -293,9 +447,21 @@
     </div>
 
     <div class="footer">
-      &copy; 2026 Cengiz Darian Hanci. Alle Rechte vorbehalten.
+      &copy; 2026 Cengiz Darian Hanci
     </div>
 
   </div>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
