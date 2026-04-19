@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cengiz Darian Hanci - App Developer</title>
-  <meta name="description" content="Independent App Developer from Bremen, Germany. Creator of BoxTime, Lunair, Sola, and PostCore.">
+  <meta name="description" content="Independent App Developer from Bremen, Germany. Creator of BoxTime, Lunair, Lumea, Sola, and PostCore.">
   <meta property="og:title" content="Cengiz Darian Hanci - App Developer">
   <meta property="og:description" content="Independent App Developer from Bremen, Germany. Building apps people love.">
   <meta property="og:type" content="website">
@@ -1222,6 +1222,53 @@
           </div>
         </div>
 
+        <!-- Lumea -->
+        <div class="app-block fade-in">
+          <div class="app-header">
+            <div class="app-icon"><img src="icons/lumea.png" alt="Lumea" loading="lazy"></div>
+            <div class="app-meta">
+              <div class="app-name">Lumea</div>
+              <div class="app-desc">Guided meditations — body scan, breathwork, silence & self-compassion</div>
+            </div>
+            <a href="https://apps.apple.com/app/id6760657902" target="_blank" rel="noopener" class="app-badge">App Store</a>
+          </div>
+          <div class="app-tech-tags">
+            <span class="app-tech-tag">Swift</span>
+            <span class="app-tech-tag">SwiftUI</span>
+            <span class="app-tech-tag">StoreKit 2</span>
+            <span class="app-tech-tag">Realm</span>
+            <span class="app-tech-tag">Firebase</span>
+            <span class="app-tech-tag">HealthKit</span>
+          </div>
+          <div class="preview-toggle" onclick="toggleScreenshots(this)">
+            <button class="preview-toggle-btn" type="button">
+              App ansehen
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="preview-line"></div>
+          </div>
+          <div class="screenshots-panel" data-app="lumea">
+            <div class="screenshots-inner">
+              <div class="screenshots-row">
+                <div class="phone-frame" onclick="openLightbox('lumea',0)"><img src="screenshots/lumea/body-scan.png" alt="Body Scan" loading="lazy"></div>
+                <div class="phone-frame" onclick="openLightbox('lumea',1)"><img src="screenshots/lumea/silence.png" alt="Silence" loading="lazy"></div>
+                <div class="phone-frame" onclick="openLightbox('lumea',2)"><img src="screenshots/lumea/breath.png" alt="Breath Reset" loading="lazy"></div>
+              </div>
+              <div class="more-row">
+                <button class="more-btn" onclick="toggleExtra(this)" type="button">
+                  Mehr entdecken
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+              </div>
+              <div class="extra-screenshots" data-app="lumea">
+                <div class="phone-frame" onclick="openLightbox('lumea',3)"><img src="screenshots/lumea/presence.png" alt="Pure Presence" loading="lazy"></div>
+                <div class="phone-frame" onclick="openLightbox('lumea',4)"><img src="screenshots/lumea/metta.png" alt="Metta" loading="lazy"></div>
+                <div class="phone-frame" onclick="openLightbox('lumea',5)"><img src="screenshots/lumea/rain.png" alt="R.A.I.N." loading="lazy"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Sola -->
         <div class="app-block fade-in">
           <div class="app-header">
@@ -1427,6 +1474,14 @@
         'screenshots/lunair/technique.png',
         'screenshots/lunair/stats-month.png',
         'screenshots/lunair/top-techniques.png'
+      ],
+      lumea: [
+        'screenshots/lumea/body-scan.png',
+        'screenshots/lumea/silence.png',
+        'screenshots/lumea/breath.png',
+        'screenshots/lumea/presence.png',
+        'screenshots/lumea/metta.png',
+        'screenshots/lumea/rain.png'
       ],
       sola: [
         'screenshots/sola/entry.png',
