@@ -6,3 +6,4 @@ Schalter, die Apps beim Start lesen — ohne App-Update. Geschrieben vom RevCock
 |---|---|---|---|
 | `dayplan.json` | DayPlan | `paywallOffer` | `standard` · `lifetimeFocus` |
 | `padeltracker.json` | Padel Score Tracker | `paywallOffer` | `standard` · `lifetimeFocus` |
+| `runarc.json` | RunArc | `paywallOffer` | `standard` · `lifetimeFocus` |
