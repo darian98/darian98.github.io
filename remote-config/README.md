@@ -8,3 +8,4 @@ Schalter, die Apps beim Start lesen — ohne App-Update. Geschrieben vom RevCock
 | `padeltracker.json` | Padel Score Tracker | `paywallOffer` | `standard` · `lifetimeFocus` |
 | `runarc.json` | RunArc | `paywallOffer` | `standard` · `lifetimeFocus` |
 | `stretchzen.json` | StretchZen | `paywallOffer` | `standard` · `lifetimeFocus` |
+| `spendra-android.json` | Spendra (Android) | `paywallOffer` | `standard` · `lifetimeFocus` |
