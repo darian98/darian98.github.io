@@ -6,7 +6,7 @@ Schalter, die Apps beim Start lesen — ohne App-Update. Geschrieben vom RevCock
 |---|---|---|---|
 | `dayplan.json` | DayPlan | `paywallOffer` | `standard` · `lifetimeFocus` |
 | `padeltracker.json` | Padel Score Tracker | `paywallOffer` | `standard` · `lifetimeFocus` |
-| `runarc.json` | RunArc | `paywallOffer` | `standard` · `lifetimeFocus` |
+| `runarc.json` | RunArc | `paywallOffer` | `standard` · `lifetimeFocus` · `yearlyFocus` (ab 1.11.1) |
 | `stretchzen.json` | StretchZen | `paywallOffer` | `standard` · `lifetimeFocus` |
 | `spendra-android.json` | Spendra (Android) | `paywallOffer` | `standard` · `lifetimeFocus` |
 | `spendra.json` | Budget & Bill Planner: Spendra (iOS, ab 1.3.0) | `paywallOffer` | `standard` · `lifetimeFocus` |
